@@ -1,0 +1,22 @@
+import PropTypes from "prop-types";
+import React from "react";
+import {View} from "react-native";
+import Style from "./style";
+
+const BlankCard = ({style, children, contentBackground}) => {
+  return (
+    <View style={[Style.content, style]}>
+      <View style={contentBackground && Style.contentBackground}>{children}</View>
+    </View>
+  );
+};
+
+BlankCard.propTypes = {
+  contentBackground: PropTypes.bool,
+};
+
+BlankCard.defaultProps = {
+  contentBackground: true,
+};
+
+export default BlankCard;

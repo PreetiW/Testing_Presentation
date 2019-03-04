@@ -1,0 +1,31 @@
+import {checkIfTaskDoneToday, getNurseMessage, taskAfter12} from "..";
+import * as lolex from "lolex";
+jest.mock("../../../utils/generateRandomNumber");
+
+describe("NurseService", () => {
+  describe("getNurseMessage", () => {
+    let clock;
+    beforeEach(() => {
+      clock = lolex.install({now: new Date("July 02, 2018 00:13:00")});
+    });
+    afterEach(() => {
+      clock.uninstall();
+    });
+
+    it("should return message for no tasks completed: After 12 AM", () => {
+      let startDate = new Date("July 01, 2018 11:13:00");
+
+      let noTasksProps = {
+        selectedTasks: 0,
+        totalTasks: 4,
+        childName: "Cliff",
+        checkinTime: "10:00",
+        startDate: startDate,
+      };
+
+      let expectedMessage = "Complete all last tasks to help Cliff sleep better 😀";
+      let receivedMessage = getNurseMessage(noTasksProps);
+      expect(receivedMessage).toEqual(expectedMessage);
+    });
+  });
+}

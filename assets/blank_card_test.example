@@ -1,0 +1,46 @@
+import React from 'react';
+import BlankCard from "..";
+import { Text } from "react-native";
+import renderer from 'react-test-renderer';
+
+it('renders contents inside the card', () => {
+    expect(renderer.create(
+        <BlankCard
+            children={<Text>Content To Display Inside Card</Text>} />
+    )).toMatchSnapshot();
+});
+
+yarn test
+------------------------
+yarn test -u
+
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders contents inside the card 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "marginBottom": 40,
+        "paddingHorizontal": 58,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "hsla(224.5, 37.3%, 14.6%, 0.75)",
+        "borderRadius": 30,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text>
+      Content To Display Inside Card
+    </Text>
+  </View>
+</View>
+`;
+

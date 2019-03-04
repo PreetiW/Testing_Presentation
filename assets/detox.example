@@ -1,0 +1,18 @@
+Feature: Do a Sleep Check
+
+  @sleep_check @one_time_questions
+  Scenario: Should be able to click the Sleep Check button on Welcome screen
+    Given I am shown the "Welcome" screen
+    And I press the "DO A SLEEPCHECK" button on "Welcome" screen
+    And I am shown the "Questions" screen
+    And I type "STUDY1234" as answer on the "Please enter your Study Number" input question of the "Questions" screen
+    And I type "1234" as answer on the "Please enter your postcode" input question of the "Questions" screen
+    And I type "Cliff" as answer on the "What's the name of your child?" input question of the "Questions" screen
+    And I press on the dropdown of the "How old is Cliff?" question of the "Questions" screen
+    And I press on the dropdown value "3 yrs" of the "How old is Cliff?" question of the "Questions" screen
+    And I scroll the view of "Questions" screen to the "bottom"
+    And I press the "Submit" button on "Questions" screen
+    And I check "Boy" on the question "Is Cliff a boy or a girl?" of the "Questions" screen
+    And I check "No" on the question "Is snoring the only sleep concern that you have for Cliff?" of the "Questions" screen
+    And I check "Never or once per week" on the question "When Cliff is well, do they snort or gasp during sleep?" of the "Questions" screen
+    And I check "Never or once per week" on the question "Does Cliff stop breathing during sleep?" of the "Questions" screen

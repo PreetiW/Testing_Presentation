@@ -1,0 +1,94 @@
+import React from "react";
+import {AppState, Image, View} from "react-native";
+import {NavigationActions} from "react-navigation";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import MyStrategy from "../../components/MyStrategy";
+import ScrollableContent from "../../components/ScrollableContent";
+
+export default class MyStrategiesScreen extends React.Component {
+  static navigationOptions = {
+    title: "My Strategies",
+    headerLeftButton: <MenuButton />,
+  };
+
+  state = {
+    strategies: [],
+  };
+
+  handleAppStateChange = this.handleAppStateChange.bind(this);
+
+  componentWillMount() {
+    this.gotoDailyCheckin(this.props);
+    this.updateStrategies(this.props);
+    AppState.addEventListener("change", this.handleAppStateChange);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.gotoDailyCheckin(nextProps);
+    this.updateStrategies(nextProps);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener("change", this.handleAppStateChange);
+  }
+
+  handleAppStateChange(nextAppState) {
+    if (nextAppState === "active") {
+      this.gotoDailyCheckin(this.props);
+      this.updateStrategies(this.props);
+    }
+  }
+}
+
+import React from "react";
+import {View, Image, Text} from "react-native";
+import {getNurseMessage} from "../../services/NurseService";
+import Style from "./style";
+
+export default class Nurse extends React.PureComponent {
+  render() {
+    let message = getNurseMessage(this.props);
+
+    return (
+      <View style={Style.nurseContainer}>
+        <Image style={Style.nurseImage} source={require("../../assets/images/nurse.png")} />
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+          <Image style={Style.nurseBubble} source={require("../../assets/images/nurse_bubble.png")} />
+          <Text style={Style.nurseInstructions}>{message}</Text>
+        </View>
+      </View>
+    );
+  }
+}
+
+TEST 1
+-------------------------------------------------------------------------
+describe("NurseService", () => {
+    it("should return message for no tasks completed: After 12 AM", () => {
+      let expectedMessage = "Complete all last tasks to help Cliff sleep better 😀";
+      let receivedMessage = getNurseMessage(noTasksProps);
+      expect(receivedMessage).toEqual(expectedMessage);
+    });
+});
+TEST 2
+-------------------------------------------------------------------------
+describe("NurseService", () => {
+    it("should return message for all tasks completed: After 12 AM", () => {
+      let expectedMessage = "Hurray 👯! All tasks completed for last night. We'll check in at 10:00 AM.";
+      let receivedMessage = getNurseMessage(allTasksProps);
+      expect(receivedMessage).toEqual(expectedMessage);
+    });
+});
+
+describe("NurseService", () => {
+    it("should return message for no tasks completed: After 12 AM", () => {
+      let expectedMessage = "Get back on track.😀 \n" + "Complete all last night's tasks to help Cliff sleep better.";
+      let receivedMessage = getNurseMessage(noTasksProps);
+      expect(receivedMessage).toEqual(expectedMessage);
+    });
+});
