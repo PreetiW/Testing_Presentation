@@ -122,7 +122,7 @@ export default class Presentation extends React.Component {
       
         <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             color="white"
             textSize=".6em"
             textAlign= "left"
@@ -136,7 +136,7 @@ export default class Presentation extends React.Component {
 
         <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             color="white"
             textSize=".6em"
             textAlign= "left"
@@ -181,16 +181,16 @@ export default class Presentation extends React.Component {
 
         <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             color="white"
             textSize=".6em"
             textAlign= "left"
             showLineNumbers={false}
             code={code.get_nurse_message}
             ranges={[
+              { loc: [68, 77] },
               { loc: [8, 17] },
               { loc: [45, 52] },
-              { loc: [68, 77] },
         ]}/>
 
         <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
@@ -210,7 +210,7 @@ export default class Presentation extends React.Component {
 
         <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             color="white"
             textSize=".6em"
             textAlign= "left"
@@ -304,7 +304,7 @@ export default class Presentation extends React.Component {
 
         <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             color="white"
             textSize=".6em"
             textAlign= "left"
@@ -320,6 +320,17 @@ export default class Presentation extends React.Component {
           <Heading size={5} textColor="secondary" caps>
             Tests In Action
           </Heading>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
+        <Heading size={4} textColor="secondary" caps >
+             Time?
+          </Heading>
+        <Appear>  
+          <BlockQuote>
+            <Quote textColor="tertiary">Make Time for Tests!</Quote>
+          </BlockQuote>
+          </Appear>
         </Slide>
 
         <Slide transition={['fade']}>
